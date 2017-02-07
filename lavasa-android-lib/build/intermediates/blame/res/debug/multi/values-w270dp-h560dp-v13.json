@@ -1,0 +1,83 @@
+[
+    {
+        "outputFile": "/home/santosh/work/RapidFormFactoryFun/lavasa-android-lib/build/intermediates/incremental/mergeDebugResources/merged.dir/values-w270dp-h560dp-v13/values-w270dp-h560dp-v13.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 68,
+                    "endOffset": 119
+                },
+                "from": {
+                    "file": "/home/santosh/work/RapidFormFactoryFun/lavasa-android-lib/build/intermediates/exploded-aar/com.rba.ui/materialdesignlibrary/0.1.6/res/values-w270dp-h560dp/values-w270dp-h560dp.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 232,
+                        "endColumn": 68,
+                        "endOffset": 296
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 124,
+                    "endColumn": 59,
+                    "endOffset": 179
+                },
+                "from": {
+                    "file": "/home/santosh/work/RapidFormFactoryFun/lavasa-android-lib/build/intermediates/exploded-aar/com.rba.ui/materialdesignlibrary/0.1.6/res/values-w270dp-h560dp/values-w270dp-h560dp.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 4,
+                        "startOffset": 301,
+                        "endColumn": 59,
+                        "endOffset": 356
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 184,
+                    "endColumn": 60,
+                    "endOffset": 240
+                },
+                "from": {
+                    "file": "/home/santosh/work/RapidFormFactoryFun/lavasa-android-lib/build/intermediates/exploded-aar/com.rba.ui/materialdesignlibrary/0.1.6/res/values-w270dp-h560dp/values-w270dp-h560dp.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 361,
+                        "endColumn": 60,
+                        "endOffset": 417
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 5,
+                    "startColumn": 4,
+                    "startOffset": 245,
+                    "endColumn": 59,
+                    "endOffset": 300
+                },
+                "from": {
+                    "file": "/home/santosh/work/RapidFormFactoryFun/lavasa-android-lib/build/intermediates/exploded-aar/com.rba.ui/materialdesignlibrary/0.1.6/res/values-w270dp-h560dp/values-w270dp-h560dp.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 422,
+                        "endColumn": 59,
+                        "endOffset": 477
+                    }
+                }
+            }
+        ]
+    }
+]

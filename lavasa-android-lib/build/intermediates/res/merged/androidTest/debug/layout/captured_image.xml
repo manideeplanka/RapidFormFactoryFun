@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/capture_image_activity_element_margin">
+
+    <ImageView
+        android:layout_margin="@dimen/capture_image_activity_element_margin"
+        android:id="@+id/captured_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="centerCrop"
+        android:layout_centerInParent="true" />
+
+    <ImageView
+        android:layout_marginTop="@dimen/capture_image_activity_element_margin"
+        android:layout_marginRight="@dimen/capture_image_activity_element_margin"
+        android:id="@+id/cancel_captured_image"
+        android:layout_width="@dimen/capture_image_cancel_button"
+        android:layout_height="@dimen/capture_image_cancel_button"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/ic_delete" />
+
+</RelativeLayout>

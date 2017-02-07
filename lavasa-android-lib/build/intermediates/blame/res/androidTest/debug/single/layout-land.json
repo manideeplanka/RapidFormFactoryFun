@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/home/santosh/work/RapidFormFactoryFun/lavasa-android-lib/build/intermediates/res/merged/androidTest/debug/layout-land/mdtp_date_picker_dialog.xml",
+        "source": "/home/santosh/work/RapidFormFactoryFun/lavasa-android-lib/build/intermediates/exploded-aar/com.rba.ui/materialdesignlibrary/0.1.6/res/layout-land/mdtp_date_picker_dialog.xml"
+    },
+    {
+        "merged": "/home/santosh/work/RapidFormFactoryFun/lavasa-android-lib/build/intermediates/res/merged/androidTest/debug/layout-land/mdtp_time_picker_dialog.xml",
+        "source": "/home/santosh/work/RapidFormFactoryFun/lavasa-android-lib/build/intermediates/exploded-aar/com.rba.ui/materialdesignlibrary/0.1.6/res/layout-land/mdtp_time_picker_dialog.xml"
+    }
+]

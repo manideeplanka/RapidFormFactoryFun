@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.rba.ui.MaterialEditText
+        android:id="@+id/credit_card_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:maxLength="16"
+        android:singleLine="true"
+        app:met_floatingLabel="highlight"
+        app:met_floatingLabelAnimating="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.rba.ui.MaterialEditText
+            android:id="@+id/cvc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/credit_card_margin"
+            android:layout_weight="1"
+            android:hint="@string/cvv"
+            android:inputType="number"
+            android:maxLength="5"
+            android:singleLine="true"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelAnimating="true" />
+
+        <com.rba.ui.MaterialEditText
+            android:id="@+id/expiry_month"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/credit_card_margin"
+            android:layout_weight="1"
+            android:hint="@string/month"
+            android:inputType="number"
+            android:maxLength="2"
+            android:singleLine="true"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelAnimating="true" />
+
+        <com.rba.ui.MaterialEditText
+            android:id="@+id/expiry_year"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/credit_card_margin"
+            android:layout_weight="1.5"
+            android:hint="@string/year"
+            android:inputType="number"
+            android:maxLength="4"
+            android:singleLine="true"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelAnimating="true" />
+
+    </LinearLayout>
+
+</LinearLayout>

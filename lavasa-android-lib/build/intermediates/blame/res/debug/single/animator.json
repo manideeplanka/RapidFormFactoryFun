@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/home/santosh/work/RapidFormFactoryFun/lavasa-android-lib/build/intermediates/res/merged/debug/animator/scale.xml",
+        "source": "/home/santosh/work/RapidFormFactoryFun/lavasa-android-lib/src/main/res/animator/scale.xml"
+    },
+    {
+        "merged": "/home/santosh/work/RapidFormFactoryFun/lavasa-android-lib/build/intermediates/res/merged/debug/animator/scale_with_alpha.xml",
+        "source": "/home/santosh/work/RapidFormFactoryFun/lavasa-android-lib/build/intermediates/exploded-aar/me.relex/circleindicator/1.2.1/res/animator/scale_with_alpha.xml"
+    }
+]

@@ -1,0 +1,34 @@
+[
+    {
+        "merged": "/home/santosh/work/RapidFormFactoryFun/lavasa-android-lib/build/intermediates/res/merged/androidTest/debug/drawable-v21/mdtp_material_button_selected.xml",
+        "source": "/home/santosh/work/RapidFormFactoryFun/lavasa-android-lib/build/intermediates/exploded-aar/com.rba.ui/materialdesignlibrary/0.1.6/res/drawable-v21/mdtp_material_button_selected.xml"
+    },
+    {
+        "merged": "/home/santosh/work/RapidFormFactoryFun/lavasa-android-lib/build/intermediates/res/merged/androidTest/debug/drawable-v21/mdtp_material_button_background.xml",
+        "source": "/home/santosh/work/RapidFormFactoryFun/lavasa-android-lib/build/intermediates/exploded-aar/com.rba.ui/materialdesignlibrary/0.1.6/res/drawable-v21/mdtp_material_button_background.xml"
+    },
+    {
+        "merged": "/home/santosh/work/RapidFormFactoryFun/lavasa-android-lib/build/intermediates/res/merged/androidTest/debug/drawable-v21/md_btn_shape.xml",
+        "source": "/home/santosh/work/RapidFormFactoryFun/lavasa-android-lib/build/intermediates/exploded-aar/com.rba.ui/materialdesignlibrary/0.1.6/res/drawable-v21/md_btn_shape.xml"
+    },
+    {
+        "merged": "/home/santosh/work/RapidFormFactoryFun/lavasa-android-lib/build/intermediates/res/merged/androidTest/debug/drawable-v21/abc_btn_colored_material.xml",
+        "source": "/home/santosh/work/RapidFormFactoryFun/lavasa-android-lib/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/drawable-v21/abc_btn_colored_material.xml"
+    },
+    {
+        "merged": "/home/santosh/work/RapidFormFactoryFun/lavasa-android-lib/build/intermediates/res/merged/androidTest/debug/drawable-v21/md_btn_selector_ripple_dark.xml",
+        "source": "/home/santosh/work/RapidFormFactoryFun/lavasa-android-lib/build/intermediates/exploded-aar/com.rba.ui/materialdesignlibrary/0.1.6/res/drawable-v21/md_btn_selector_ripple_dark.xml"
+    },
+    {
+        "merged": "/home/santosh/work/RapidFormFactoryFun/lavasa-android-lib/build/intermediates/res/merged/androidTest/debug/drawable-v21/abc_action_bar_item_background_material.xml",
+        "source": "/home/santosh/work/RapidFormFactoryFun/lavasa-android-lib/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/drawable-v21/abc_action_bar_item_background_material.xml"
+    },
+    {
+        "merged": "/home/santosh/work/RapidFormFactoryFun/lavasa-android-lib/build/intermediates/res/merged/androidTest/debug/drawable-v21/md_btn_selector_ripple.xml",
+        "source": "/home/santosh/work/RapidFormFactoryFun/lavasa-android-lib/build/intermediates/exploded-aar/com.rba.ui/materialdesignlibrary/0.1.6/res/drawable-v21/md_btn_selector_ripple.xml"
+    },
+    {
+        "merged": "/home/santosh/work/RapidFormFactoryFun/lavasa-android-lib/build/intermediates/res/merged/androidTest/debug/drawable-v21/abc_edit_text_material.xml",
+        "source": "/home/santosh/work/RapidFormFactoryFun/lavasa-android-lib/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/drawable-v21/abc_edit_text_material.xml"
+    }
+]

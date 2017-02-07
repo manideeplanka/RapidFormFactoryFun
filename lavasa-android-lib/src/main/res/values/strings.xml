@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="schema_error">Please specify the schema for your form.</string>
+    <string name="invalid_schema">Please specify a valid schema.</string>
+    <string name="inner_section_error">Currently we are not supporting the section inside a section.</string>
+    <string name="invalid_value_error">Please specify json for the property </string>
+    <string name="duplicate_keys">All the keys in the json should be unique. Duplicate key exists for the key name </string>
+    <string name="json_error_message">Please specify the data for </string>
+    <string name="invalid_data_message">Invalid data for </string>
+    <string name="invalid_type">Invalid type </string>
+    <string name="invalid_json">Invalid json</string>
+    <string name="empty_json">Empty json</string>
+    <string name="method_name">Method name is not defined for </string>
+    <string name="function">Function is not defined for </string>
+    <string name="background_error_message">Please specify a valid background for </string>
+    <string name="font_error_message">Please specify a valid font for </string>
+    <string name="visibility_error_message">Please specify a valid visibility for </string>
+    <string name="editability_error_message">Please specify a valid editability for </string>
+    <string name="visibility_json_error_message">Please specify a valid visibility json for </string>
+    <string name="editability_json_error_message">Please specify a valid editability json for </string>
+    <string name="invalid_email">Invalid email.</string>
+    <string name="required_error_message">Please specify a valid required value for </string>
+    <string name="form_view_null">Form view cannot be null.</string>
+    <string name="form_json_null">Form json data cannot be null.</string>
+    <string name="navigate_to_error">Please provide a validate keyname</string>
+    <string name="required_field_error">Please enter a value.</string>
+    <string name="valid_month">Please enter valid month.</string>
+
+    <!-- Exceptions -->
+    <string name="register_field_error">Class must be extended with RFBaseElement or RFCustomField</string>
+    <string name="register_element_error">Class must be extended with one of the elements provided by RFF</string>
+    <string name="register_field_exception">register fields should be called before generating the form.</string>
+    <string name="register_element_exception">register elements should be called before generating the form.</string>
+    <string name="no_constructor_exception">Unable to find the default constructor or constructor with context or constructor with context and model</string>
+    <string name="constructor_access_exception">Unable to access the constructor</string>
+    <string name="constructor_invocation_exception">Invocation target ex</string>
+    <string name="constructor_instantiation_exception">Unable to create instance.</string>
+
+    <!-- UI -->
+    <string name="retry">Retry</string>
+    <string name="month">Month</string>
+    <string name="year">Year</string>
+    <string name="cvv">CVV</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="location_ok">Okay</string>
+    <string name="location_cancel">Cancel</string>
+
+</resources>

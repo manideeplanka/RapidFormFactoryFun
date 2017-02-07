@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="green_color">#06B98F</color>
+    <color name="white">#FAFEFC</color>
+    <color name="grey_color">#8C908D</color>
+    <color name="black">#000000</color>
+    <color name="grey">#d2d2d2</color>
+    <color name="app_primary_color">#4384c1</color>
+    <color name="app_primary_dark_color">#2259a5</color>
+
+    <color name="header_color">#4c4c4d</color>
+    <color name="header_start_color">#898989</color>
+</resources>

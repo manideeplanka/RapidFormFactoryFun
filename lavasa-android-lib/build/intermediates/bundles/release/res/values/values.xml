@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="app_primary_color">#4384c1</color>
+    <color name="app_primary_dark_color">#2259a5</color>
+    <color name="black">#000000</color>
+    <color name="green_color">#06B98F</color>
+    <color name="grey">#d2d2d2</color>
+    <color name="grey_color">#8C908D</color>
+    <color name="header_color">#4c4c4d</color>
+    <color name="header_start_color">#898989</color>
+    <color name="white">#FAFEFC</color>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="capture_image_activity_border_padding">16dp</dimen>
+    <dimen name="capture_image_activity_element_margin">3dp</dimen>
+    <dimen name="capture_image_cancel_button">20dp</dimen>
+    <dimen name="capture_image_element_margin">5dp</dimen>
+    <dimen name="captured_image_height">20dp</dimen>
+    <dimen name="captured_image_width">20dp</dimen>
+    <dimen name="credit_card_margin">5dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="footer_top">40dp</dimen>
+    <dimen name="image_height">150dp</dimen>
+    <dimen name="image_width">150dp</dimen>
+    <dimen name="location_image">30dp</dimen>
+    <dimen name="location_margin">5dp</dimen>
+    <dimen name="location_padding">5dp</dimen>
+    <dimen name="padding">5dp</dimen>
+    <dimen name="seek_bar_padding">10dp</dimen>
+    <dimen name="seek_bar_value_width">80dp</dimen>
+    <dimen name="signature_height">120dp</dimen>
+    <string name="background_error_message">Please specify a valid background for </string>
+    <string name="constructor_access_exception">Unable to access the constructor</string>
+    <string name="constructor_instantiation_exception">Unable to create instance.</string>
+    <string name="constructor_invocation_exception">Invocation target ex</string>
+    <string name="cvv">CVV</string>
+    <string name="duplicate_keys">All the keys in the json should be unique. Duplicate key exists for the key name </string>
+    <string name="editability_error_message">Please specify a valid editability for </string>
+    <string name="editability_json_error_message">Please specify a valid editability json for </string>
+    <string name="empty_json">Empty json</string>
+    <string name="font_error_message">Please specify a valid font for </string>
+    <string name="form_json_null">Form json data cannot be null.</string>
+    <string name="form_view_null">Form view cannot be null.</string>
+    <string name="function">Function is not defined for </string>
+    <string name="inner_section_error">Currently we are not supporting the section inside a section.</string>
+    <string name="invalid_data_message">Invalid data for </string>
+    <string name="invalid_email">Invalid email.</string>
+    <string name="invalid_json">Invalid json</string>
+    <string name="invalid_schema">Please specify a valid schema.</string>
+    <string name="invalid_type">Invalid type </string>
+    <string name="invalid_value_error">Please specify json for the property </string>
+    <string name="json_error_message">Please specify the data for </string>
+    <string name="latitude">Latitude</string>
+    <string name="location_cancel">Cancel</string>
+    <string name="location_ok">Okay</string>
+    <string name="longitude">Longitude</string>
+    <string name="method_name">Method name is not defined for </string>
+    <string name="month">Month</string>
+    <string name="navigate_to_error">Please provide a validate keyname</string>
+    <string name="no_constructor_exception">Unable to find the default constructor or constructor with context or constructor with context and model</string>
+    <string name="register_element_error">Class must be extended with one of the elements provided by RFF</string>
+    <string name="register_element_exception">register elements should be called before generating the form.</string>
+    <string name="register_field_error">Class must be extended with RFBaseElement or RFCustomField</string>
+    <string name="register_field_exception">register fields should be called before generating the form.</string>
+    <string name="required_error_message">Please specify a valid required value for </string>
+    <string name="required_field_error">Please enter a value.</string>
+    <string name="retry">Retry</string>
+    <string name="schema_error">Please specify the schema for your form.</string>
+    <string name="valid_month">Please enter valid month.</string>
+    <string name="visibility_error_message">Please specify a valid visibility for </string>
+    <string name="visibility_json_error_message">Please specify a valid visibility json for </string>
+    <string name="year">Year</string>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+</resources>

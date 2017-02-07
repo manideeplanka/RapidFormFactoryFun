@@ -1,0 +1,36 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="padding">5dp</dimen>
+    <dimen name="footer_top">40dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <!-- Signagture custom field -->
+    <dimen name="signature_height">120dp</dimen>
+
+    <!-- Image custom field -->
+    <dimen name="image_width">150dp</dimen>
+    <dimen name="image_height">150dp</dimen>
+
+    <!-- SeekBar custom field -->
+    <dimen name="seek_bar_value_width">80dp</dimen>
+    <dimen name="seek_bar_padding">10dp</dimen>
+
+    <!-- Capture Image field -->
+    <dimen name="captured_image_width">20dp</dimen>
+    <dimen name="captured_image_height">20dp</dimen>
+    <dimen name="capture_image_activity_border_padding">16dp</dimen>
+    <dimen name="capture_image_activity_element_margin">3dp</dimen>
+    <dimen name="capture_image_cancel_button">20dp</dimen>
+    <dimen name="capture_image_element_margin">5dp</dimen>
+
+    <!-- Credit Card -->
+    <dimen name="credit_card_margin">5dp</dimen>
+
+    <!-- Location View -->
+    <dimen name="location_image">30dp</dimen>
+    <dimen name="location_margin">5dp</dimen>
+    <dimen name="location_padding">5dp</dimen>
+</resources>

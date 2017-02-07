@@ -1,0 +1,70 @@
+{
+  "layout": {},
+  "styles": {},
+  "schema": {
+    "Sports": [
+      {
+        "meta": {
+          "title": "Sports Form"
+        },
+        "sports_page": [
+          {
+            "meta": {
+              "title": "Sports Page"
+            },
+            "sports_page_section": [
+              {
+                "sports_page_select_sport": {
+                  "title": "Select Sport",
+                  "placeholder": "Select Sport",
+                  "type": "singleSelection",
+                  "data": [
+                  ],
+                  "optional": false,
+                  "behaviour": [
+                  ]
+                }
+              },
+              {
+                "sports_page_select_player": {
+                  "title": "Select Player",
+                  "placeholder": "Select Player",
+                  "type": "singleSelection",
+                  "data": [
+                  ],
+                  "optional": false
+                }
+              },
+              {
+                "sports_page_set_score": {
+                  "title": "Set score",
+                  "placeholder": "Set Score",
+                  "type": "singleSelection",
+                  "data": [
+                  ],
+                  "optional": false
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "validation": {
+    "sports_page_select_sport": {
+      "required": true,
+      "on_change": {
+        "method_name": "updatePlayerData",
+        "function": "function updatePlayerData(currentFormData) {var sportKey = 'sports_page_select_sport'; var playerKey = 'sports_page_select_player'; var fieldDetails = (JSON.parse(currentFormData))['data']; var sportFieldData = JSON.parse(fieldDetails[sportKey]); var sport = sportFieldData[Object.keys(sportFieldData)[0]] || ''; var updatePlayerData = {}; updatePlayerData.success = true; var behaviourData = {}; var playerData = {}; playerData[playerKey] = []; behaviourData.dynamic_options = playerData; behaviourData.findForKey = sport; updatePlayerData.behaviour = JSON.stringify(behaviourData); return updatePlayerData;}"
+      }
+    },
+    "sports_page_select_player": {
+      "required": true,
+      "on_change": {
+        "method_name": "updateScoreData",
+        "function": "function updateScoreData(currentFormData) {var scoreKey = 'sports_page_set_score'; var playerKey = 'sports_page_select_player'; var fieldDetails = (JSON.parse(currentFormData))['data']; var playerFieldData = JSON.parse(fieldDetails[playerKey]); var player = playerFieldData[Object.keys(playerFieldData)[0]] || ''; var updateScoreData = {}; updateScoreData.success = true; var behaviourData = {}; var scoreData = {}; scoreData[scoreKey] = []; behaviourData.dynamic_options = scoreData; behaviourData.findForKey = player; updateScoreData.behaviour = JSON.stringify(behaviourData); return updateScoreData;}"
+      }
+    }
+  }
+}
