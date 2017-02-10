@@ -1,0 +1,75 @@
+{
+  "layout": {},
+  "styles": {
+    "sports_page_select_house": {
+      "editability": false
+    }
+  },
+  "schema": {
+    "Sports": [
+      {
+        "meta": {
+          "title": "Sports Form"
+        },
+        "sports_page": [
+          {
+            "meta": {
+              "title": "Sports Page"
+            },
+            "sports_page_section": [
+              {
+                "sports_page_select_school": {
+                  "title": "Select School",
+                  "placeholder": "Select School",
+                  "type": "singleSelection",
+                  "data": [
+                  ],
+                  "optional": false
+                }
+              },
+              {
+                "sports_page_select_house": {
+                  "title": "Select House",
+                  "placeholder": "Select House",
+                  "type": "singleSelection",
+                  "data": [
+                    {
+                      "0": "Gryffindor"
+                    },
+                    {
+                      "1": "Slytherin"
+                    }
+                  ],
+                  "optional": false
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "validation": {
+    "sports_page_select_school": {
+      "required": false,
+      "on_change": {
+        "method_name": "isEmpty",
+        "function": "function isEmpty(response) {var errorMessage;var Json = JSON.parse(response);var dataObject = Json['data'];var project_type_str = dataObject['sports_page_select_school'];if (project_type_str != null && project_type_str.length != 0) {errorMessage = '';} else {errorMessage = 'Please select a School';}var responseJson = {};var Value;if (errorMessage.length == 0) {var project_type_obj = JSON.parse(project_type_str);value = project_type_obj[Object.keys(project_type_obj)[0]];responseJson.error_message = errorMessage;responseJson.behaviour = 'yep'; responseJson.success = true;} else {responseJson.error_message = errorMessage;responseJson.behaviour = 'nope'; responseJson.success = false;}return responseJson;}"
+      }
+    }
+  },
+  "behaviour": {
+    "sports_page_select_school": {
+      "nope": {
+        "editability": {
+          "sports_page_select_house": false
+        }
+      },
+      "yep": {
+        "editability": {
+          "sports_page_select_house": true
+        }
+      }
+    }
+  }
+}

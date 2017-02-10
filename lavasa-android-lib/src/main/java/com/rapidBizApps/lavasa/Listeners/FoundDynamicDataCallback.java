@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by mlanka on 7/2/17.
  */
-public interface FoundDataCallback {
+public interface FoundDynamicDataCallback {
 
     void callback(List<String> list);
 }

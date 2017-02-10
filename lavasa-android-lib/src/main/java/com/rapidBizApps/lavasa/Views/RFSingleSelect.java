@@ -5,10 +5,9 @@ import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 
-import com.rapidBizApps.lavasa.Listeners.FindDataInterface;
-import com.rapidBizApps.lavasa.Listeners.FoundDataCallback;
-import com.rapidBizApps.lavasa.Listeners.LoadDataInterface;
+import com.rapidBizApps.lavasa.Listeners.FoundDynamicDataCallback;
 import com.rapidBizApps.lavasa.Listeners.RFElementEventListener;
+import com.rapidBizApps.lavasa.Listeners.RFFormListener;
 import com.rapidBizApps.lavasa.Listeners.RFSpinnerListener;
 import com.rapidBizApps.lavasa.Models.RFElementModel;
 import com.rba.ui.MaterialEditText;
@@ -32,19 +31,19 @@ public class RFSingleSelect extends RFBaseElement {
     private int mSelectedPosition;
     private List<String> mKeyList, mValueList;
     private RFSingleSelectSpinner mSpinner;
-    private LoadDataInterface loadDataInterface;
     LinkedHashMap<String, String> fetchedData = new LinkedHashMap<>();
     LinkedHashMap<String, String> dataMap;
+    private RFFormListener mFormListener;
 
     private static final String TAG = "RFSingleSelect";
 
     public RFSingleSelect(Context context, RFElementModel elementModel) {
         super(context, elementModel);
         mListener = getElementListeners();
+        mFormListener = getFormListener();
         setElementModel(elementModel);
         setRFEditText(new MaterialEditText(context));
         mContext = context;
-        loadDataInterface = (LoadDataInterface) mContext;
         init();
     }
 
@@ -92,14 +91,15 @@ public class RFSingleSelect extends RFBaseElement {
             public void onClick(View v) {
                 //check if the data is not already set. data to be loaded dynamically
                 if (mElementModel.getJsonData() == null) {
-                    loadDataInterface.loadDynamicData(mElementModel.getId(), new FoundDataCallback() {
+                    //no filter initially
+                    Log.d(TAG, "onClick:id:" + mElementModel.getId() + ":jsonData null");
+                    mFormListener.loadDynamicData(mElementModel.getId(), null, new FoundDynamicDataCallback() {
                         @Override
                         public void callback(List<String> list) {
                             //forming the LinkedHashMap
                             for (int i = 0; i < list.size(); i++) {
                                 fetchedData.put(i + "", list.get(i));
                             }
-
 
                             mElementModel.setJsonData(fetchedData);
                             dataMap = fetchedData;
@@ -112,6 +112,7 @@ public class RFSingleSelect extends RFBaseElement {
                         }
                     });
                 } else { //data not already set
+                    Log.d(TAG, "onClick:id:" + mElementModel.getId() + ":jsonData not null");
                     mSpinner.performClick();
                 }
             }

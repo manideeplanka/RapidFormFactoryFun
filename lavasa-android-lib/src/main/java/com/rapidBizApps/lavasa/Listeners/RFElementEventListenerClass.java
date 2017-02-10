@@ -23,6 +23,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 /**
  * Created by cdara on 03-02-2016.
@@ -41,20 +42,20 @@ public final class RFElementEventListenerClass implements RFElementEventListener
     private RFBehaviourApplier mBehaviourApplierObject;
     private Context mContext;
 
-    FindDataInterface fi;
 
     public RFElementEventListenerClass(Context context, RFBaseElement element) {
         mValidatorObject = new RFValidator(context);
         mBehaviourApplierObject = new RFBehaviourApplier();
         mContext = context;
 
-        fi = (FindDataInterface) mContext;
+
         if (element != null && RFUtils.isInstance(RFElementModel.class, element.getModel())) {
             RFElementModel elementModel = (RFElementModel) element.getModel();
 
             // This method will execute only on page edit
             if (elementModel.getValue() != null) {
-                applyValidation(element, RFValidationConstants.VC_ON_CHANGE);
+                // TODO: 10/2/17 removing this helps with dependant fields
+//                applyValidation(element, RFValidationConstants.VC_ON_CHANGE);
             }
         }
     }
@@ -134,14 +135,11 @@ public final class RFElementEventListenerClass implements RFElementEventListener
     private void setResponseToModelAndView(RFBaseElement element, String javascriptMethodResponse) {
 
         try {
-
             if (javascriptMethodResponse == null) {
                 return;
             }
 
             JSONObject methodResponse = new JSONObject(javascriptMethodResponse);
-            Log.d(TAG, "setResponseToModelAndView: methodResponse " + methodResponse.toString());
-
             // This will check if the response has error message or not. Based on that it will set data to model and to view.
             if (!methodResponse.isNull(RFValidationConstants.VC_ERROR_MESSAGE) && methodResponse.getString(RFValidationConstants.VC_ERROR_MESSAGE).trim().length() != 0) {
                 ((RFElementModel) element.getModel()).setErrorMessage(methodResponse.getString(RFValidationConstants.VC_ERROR_MESSAGE));
@@ -153,31 +151,27 @@ public final class RFElementEventListenerClass implements RFElementEventListener
 
             if (!methodResponse.isNull(RFValidationConstants.VC_BEHAVIOUR)) {
                 String behaviourKey = methodResponse.get(RFValidationConstants.VC_BEHAVIOUR).toString();
+                mBehaviourApplierObject.applyBehaviour(behaviourKey, element.getModel());
+                if (element.getView() != null && sRFView != null) {
+                    sRFView.refreshCurrentPage();
+                }
+            } else if (!methodResponse.isNull(RFValidationConstants.VC_DYNAMIC_BEHAVIOUR)) {
+                String behaviourKey = methodResponse.get(RFValidationConstants.VC_DYNAMIC_BEHAVIOUR).toString();
+                String nextFocusKey = null;
+                JSONObject jsonObject = new JSONObject(behaviourKey);
 
-                if (!isJson(behaviourKey)) {
-                    mBehaviourApplierObject.applyBehaviour(behaviourKey, element.getModel());
-                    if (element.getView() != null && sRFView != null)
+              if (jsonObject.has(RFValidationConstants.VC_DYNAMIC_DATA)) {
+                    nextFocusKey = dynamicBehaviourIfData(element, nextFocusKey, jsonObject, RFValidationConstants.VC_DYNAMIC_DATA);
+                } else if (jsonObject.has(RFValidationConstants.VC_DYNAMIC_OPTIONS)) {
+                    nextFocusKey = dynamicBehaviourIfData(element, nextFocusKey, jsonObject, RFValidationConstants.VC_DYNAMIC_OPTIONS);
+                }
+
+                if (element.getView() != null && sRFView != null) {
+                    if (!element.getData().equalsIgnoreCase("")) {
                         sRFView.refreshCurrentPage();
-                } else {
-                    String nextFocusKey = null;
-                    JSONObject jsonObject = new JSONObject(behaviourKey);
-                    if (jsonObject.has(RFValidationConstants.VC_DATA)) {
-                        nextFocusKey = dynamicBehaviourIfData(element, nextFocusKey, jsonObject, RFValidationConstants.VC_DATA);
-                    } else if (jsonObject.has(RFValidationConstants.VC_OPTIONS)) {
-                        nextFocusKey = dynamicBehaviourIfData(element, nextFocusKey, jsonObject, RFValidationConstants.VC_OPTIONS);
-                    } else if (jsonObject.has(RFValidationConstants.VC_DYNAMIC_DATA)) {
-                        nextFocusKey = dynamicBehaviourIfData(element, nextFocusKey, jsonObject, RFValidationConstants.VC_DYNAMIC_DATA);
-                    } else if (jsonObject.has(RFValidationConstants.VC_DYNAMIC_OPTIONS)) {
-                        nextFocusKey = dynamicBehaviourIfData(element, nextFocusKey, jsonObject, RFValidationConstants.VC_DYNAMIC_OPTIONS);
-                    }
-
-                    if (element.getView() != null && sRFView != null) {
-                        if (!element.getData().equalsIgnoreCase("")) {
-                            sRFView.refreshCurrentPage();
-                            sRFView.navigateTo(nextFocusKey);
-                        } else {
-                            sRFView.navigateTo(element.getModel().getId());
-                        }
+                        sRFView.navigateTo(nextFocusKey);
+                    } else {
+                        sRFView.navigateTo(element.getModel().getId());
                     }
                 }
             }
@@ -191,18 +185,17 @@ public final class RFElementEventListenerClass implements RFElementEventListener
         JSONObject dataJsonObject = null;
         String findForKey = "";
 
-        if (type.equalsIgnoreCase(RFValidationConstants.VC_DATA)) {
-            dataJsonObject = jsonObject.getJSONObject(RFValidationConstants.VC_DATA);
-        } else if (type.equalsIgnoreCase(RFValidationConstants.VC_OPTIONS)) {
-            dataJsonObject = jsonObject.getJSONObject(RFValidationConstants.VC_OPTIONS);
-        } else if (type.equalsIgnoreCase(RFValidationConstants.VC_DYNAMIC_DATA)) {
+        if (type.equalsIgnoreCase(RFValidationConstants.VC_DYNAMIC_DATA)) {
             dataJsonObject = jsonObject.getJSONObject(RFValidationConstants.VC_DYNAMIC_DATA);
         } else if (type.equalsIgnoreCase(RFValidationConstants.VC_DYNAMIC_OPTIONS)) {
             dataJsonObject = jsonObject.getJSONObject(RFValidationConstants.VC_DYNAMIC_OPTIONS);
             findForKey = jsonObject.getString(RFValidationConstants.FIND_FOR_KEY);
         }
 
+        Log.d(TAG, "dynamicBehaviourIfData: dataJsonObject:" + dataJsonObject);
+
         Iterator<String> iter = dataJsonObject.keys();
+
         while (iter.hasNext()) {
             final String key = iter.next();
             ArrayList<RFSectionModel> sectionsList = ((RFElementModel) element.getModel()).getSection().getPage().getSections();
@@ -212,36 +205,47 @@ public final class RFElementEventListenerClass implements RFElementEventListener
 
                     final RFElementModel rfElementModel = elementsList.get(j);
                     if (rfElementModel.getId().equals(key)) {
-                        try {
-                            if (type.equalsIgnoreCase(RFValidationConstants.VC_DATA)) {
-                                String value = dataJsonObject.get(key).toString();
-                                rfElementModel.setValue(value);
-                            } else if (type.equalsIgnoreCase(RFValidationConstants.VC_OPTIONS)) {
-                                LinkedHashMap<String, String> value = getDataFromJson(new JSONArray(dataJsonObject.get(key).toString()));
-                                rfElementModel.setJsonData(value);
-                                rfElementModel.setValue(null);
-                            } else if (type.equalsIgnoreCase(RFValidationConstants.VC_DYNAMIC_DATA)) {
-                                String value = "";
+                        Log.d(TAG, "dynamicBehaviourIfData: current key:" + key);
+                            if (type.equalsIgnoreCase(RFValidationConstants.VC_DYNAMIC_DATA)) {
+                                String value = "dynamic";
                                 rfElementModel.setValue(value);
                             } else if (type.equalsIgnoreCase(RFValidationConstants.VC_DYNAMIC_OPTIONS)) {
                                 //get the data from the app
-                                JSONObject jsonObjectDynamic = fi.findDataForKey(findForKey);
-                                JSONArray jsonArray = jsonObjectDynamic.getJSONArray(key);
-
-                                LinkedHashMap<String, String> value = getDataFromJson(jsonArray);
-                                rfElementModel.setJsonData(value);
-                                rfElementModel.setValue(null);
+                                sFormListener.loadDynamicData(key, findForKey, new FoundDynamicDataCallback() {
+                                    @Override
+                                    public void callback(List<String> list) {
+                                        JSONArray jsonArray = null;
+                                        try {
+                                            jsonArray = createJsonArrayFromList(list);
+                                        } catch (JSONException e) {
+                                            Log.e(TAG, "callback: " + e.toString());
+                                        }
+                                        LinkedHashMap<String, String> value = getDataFromJson(jsonArray);
+                                        Log.d(TAG, "callback: elementID:" + rfElementModel.getId());
+                                        rfElementModel.setJsonData(value);
+                                        rfElementModel.setValue(null); //why this?
+                                    }
+                                });
                             }
                             nextFocusKey = key;
-                        } catch (JSONException e) {
-                            // Something went wrong!
-                            e.printStackTrace();
-                        }
+                        Log.d(TAG, "dynamicBehaviourIfData: nextFocusKey: " + nextFocusKey);
                     }
                 }
             }
         }
         return nextFocusKey;
+    }
+
+    private JSONArray createJsonArrayFromList(List<String> strings) throws JSONException {
+        JSONArray jsonArray = new JSONArray();
+
+        //JSONArray of JSONObjects to stay in line with current implementation
+        for (int i = 0; i < strings.size(); i++) {
+            jsonArray.put(new JSONObject().put(i + "", strings.get(i)));
+        }
+
+        Log.d(TAG, "createJsonArrayFromList: " + jsonArray.toString());
+        return jsonArray;
     }
 
     private LinkedHashMap<String, String> getDataFromJson(JSONArray array) {
@@ -278,13 +282,17 @@ public final class RFElementEventListenerClass implements RFElementEventListener
         return false;
     }
 
+    public static RFFormListener getFormListener() {
+        return sFormListener;
+    }
+
     /**
      * This will set the form listener
      *
      * @param formListener
      */
     public void setFormListener(RFFormListener formListener) {
-        this.sFormListener = formListener;
+        sFormListener = formListener;
     }
 
     /**

@@ -33,4 +33,5 @@ public interface RFValidationConstants {
     String FIND_FOR_KEY = "findForKey";
 
     String VC_BEHAVIOUR = "behaviour";
+    String VC_DYNAMIC_BEHAVIOUR = "dynamic_behaviour";
 }

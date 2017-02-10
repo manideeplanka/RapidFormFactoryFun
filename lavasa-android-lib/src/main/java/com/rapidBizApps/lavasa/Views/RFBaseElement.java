@@ -2,6 +2,7 @@ package com.rapidBizApps.lavasa.Views;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -31,6 +32,8 @@ import com.rapidBizApps.lavasa.RFUtils;
 // TODO: Need to discuss method names for setting the data to the model and getting data from model.
 public abstract class RFBaseElement {
 
+    private static final String TAG = "RFBaseElement";
+
     private static View sFormContainer;
     private static ViewGroup sPagesContainer;
     private static LinearLayout sSectionsContainer;
@@ -45,11 +48,18 @@ public abstract class RFBaseElement {
     private RFElementEventListener mElementEventListener;
     private RFElementEventListenerClass mElementEventListenerClass;
 
+    public RFFormListener getFormListener() {
+        return mFormListener;
+    }
+
+    private RFFormListener mFormListener;
+
     public RFBaseElement(Context context, RFBaseModel model) {
         mContext = context;
         mModel = model;
         mElementEventListenerClass = new RFElementEventListenerClass(context, this);
         setEventListeners(mElementEventListenerClass);
+        mFormListener = RFElementEventListenerClass.getFormListener();
         mStyleRenderer = new RFStyleRenderer(mContext);
         mLayoutRenderer = new RFLayoutRenderer();
     }
@@ -262,6 +272,8 @@ public abstract class RFBaseElement {
      * @param formListener
      */
     public void setFormListener(RFFormListener formListener) {
+        Log.d(TAG, "setFormListener: ");
+        mFormListener = formListener;
         mElementEventListenerClass.setFormListener(formListener);
     }
 

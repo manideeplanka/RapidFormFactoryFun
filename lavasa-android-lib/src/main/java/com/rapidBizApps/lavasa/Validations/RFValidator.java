@@ -63,7 +63,7 @@ public final class RFValidator {
             return null;
         }
 
-
+        Log.d(TAG, "applyValidations: ");
         return getValidationResult(element.getModel(), validationType, validation);
     }
 
@@ -184,6 +184,7 @@ public final class RFValidator {
                         RFElementModel currentElement = fields.get(fieldNumber);
 
                         // this will run the default java script validation function
+                        Log.d(TAG, "applyDefaultValidations");
                         String methodResponseJsonString = getValidationResult(currentElement, RFValidationConstants.VC_ON_CHANGE, currentElement.getValidation());
                         if (methodResponseJsonString != null && methodResponseJsonString.length() != 0) {
                             try {

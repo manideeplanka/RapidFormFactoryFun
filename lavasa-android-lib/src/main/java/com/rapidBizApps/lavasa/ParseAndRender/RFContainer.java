@@ -17,7 +17,7 @@ import java.util.HashMap;
  */
 
 /**
- * Use: This will manages the pages of the form.
+ * Use: This will manage the pages of the form.
  */
 public final class RFContainer extends PagerAdapter {
 

@@ -104,7 +104,7 @@ public final class RFParser {
 
             for (int i = 0; i < properties.length(); i++) {
                 String currentProperty = properties.getString(i);
-
+                Log.d(TAG, "extractJsons: currentProperty:" + currentProperty);
                 switch (currentProperty.toLowerCase()) {
                     case RFConstants.FC_SCHEMA:
                         try {
@@ -137,6 +137,7 @@ public final class RFParser {
                     case RFConstants.FC_BEHAVIOUR:
                         try {
                             mBehaviourJson = formJson.getJSONObject(currentProperty);
+                            Log.d(TAG, "extractJsons: mBehaviourJson" + mBehaviourJson);
                         } catch (JSONException e) {
                             RFUtils.throwParseError(mFormListener, RFUtils.getString(mContext, R.string.invalid_value_error) + currentProperty);
                         }
@@ -145,7 +146,7 @@ public final class RFParser {
             }
 
             // Belows conditions will check whether there is any empty json mentioned in the form json.
-            // If there are empty jsons it will initiates that particular json with null.
+            // If there is empty json it will initiate that particular json with null.
 
             if (mSchemaJson != null && mSchemaJson.names() == null) {
                 mSchemaJson = null;
@@ -509,11 +510,9 @@ public final class RFParser {
         }
 
         HashMap<String, JSONObject> validationJsonObjects = getJsonData(mValidationJson, mForm);
-        Log.e(TAG, "parseValidation: validationJsonObject ::" + validationJsonObjects);
         if (validationJsonObjects == null) {
             return;
         }
-
 
 
         ArrayList<String> errors = new ArrayList<>();
@@ -521,17 +520,13 @@ public final class RFParser {
 
         while (validationJsonObjectsIterator.hasNext()) {
             Map.Entry<String, JSONObject> pair = (Map.Entry<String, JSONObject>) validationJsonObjectsIterator.next();
-            Log.e(TAG, "parseValidation: pair ::" + pair);
             JSONObject validationJsonObject = pair.getValue();
-            Log.e(TAG, "parseValidation: validationJsonObject ::" + validationJsonObject);
             JSONArray keys = validationJsonObject.names();
             if (keys != null) {
-            RFValidationModel validationObject = new RFValidationModel();
+                RFValidationModel validationObject = new RFValidationModel();
 
-            String methodName = "";
-            String function = "";
-            Log.e(TAG, "parseValidation: keys ::" + keys);
-
+                String methodName = "";
+                String function = "";
 
                 for (int i = 0; i < keys.length(); i++) {
                     try {
@@ -632,7 +627,7 @@ public final class RFParser {
                     RFUtils.throwParseError(mFormListener, errors.get(0));
                     mForm = null;
                 }
-            }else{
+            } else {
                 return;
 
             }

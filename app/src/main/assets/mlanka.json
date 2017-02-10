@@ -1,6 +1,7 @@
 {
   "layout": {},
-  "styles": {},
+  "styles": {
+  },
   "schema": {
     "Sports": [
       {
@@ -20,9 +21,7 @@
                   "type": "singleSelection",
                   "data": [
                   ],
-                  "optional": false,
-                  "behaviour": [
-                  ]
+                  "optional": false
                 }
               },
               {
@@ -36,9 +35,9 @@
                 }
               },
               {
-                "sports_page_set_score": {
-                  "title": "Set score",
-                  "placeholder": "Set Score",
+                "sports_page_select_slam": {
+                  "title": "Select Slam",
+                  "placeholder": "Select Slam",
                   "type": "singleSelection",
                   "data": [
                   ],
@@ -53,17 +52,26 @@
   },
   "validation": {
     "sports_page_select_sport": {
-      "required": true,
+      "required": false,
       "on_change": {
         "method_name": "updatePlayerData",
-        "function": "function updatePlayerData(currentFormData) {var sportKey = 'sports_page_select_sport'; var playerKey = 'sports_page_select_player'; var fieldDetails = (JSON.parse(currentFormData))['data']; var sportFieldData = JSON.parse(fieldDetails[sportKey]); var sport = sportFieldData[Object.keys(sportFieldData)[0]] || ''; var updatePlayerData = {}; updatePlayerData.success = true; var behaviourData = {}; var playerData = {}; playerData[playerKey] = []; behaviourData.dynamic_options = playerData; behaviourData.findForKey = sport; updatePlayerData.behaviour = JSON.stringify(behaviourData); return updatePlayerData;}"
+        "function": "function updatePlayerData(currentFormData) {var yearKey = 'sports_page_select_player'; var slamKey = 'sports_page_select_sport'; var fieldDetails = (JSON.parse(currentFormData))['data'];var slamFieldData = JSON.parse(fieldDetails[slamKey]);var slam = slamFieldData[Object.keys(slamFieldData)[0]] || '';var updateYearData = {};updateYearData.success = true;var behaviourData = {};var yearData = {};yearData[yearKey] = []; behaviourData.dynamic_options = yearData; behaviourData.findForKey = slam; updateYearData.dynamic_behaviour = JSON.stringify(behaviourData); return updateYearData;}"
       }
     },
     "sports_page_select_player": {
-      "required": true,
+      "required": false,
       "on_change": {
-        "method_name": "updateScoreData",
-        "function": "function updateScoreData(currentFormData) {var scoreKey = 'sports_page_set_score'; var playerKey = 'sports_page_select_player'; var fieldDetails = (JSON.parse(currentFormData))['data']; var playerFieldData = JSON.parse(fieldDetails[playerKey]); var player = playerFieldData[Object.keys(playerFieldData)[0]] || ''; var updateScoreData = {}; updateScoreData.success = true; var behaviourData = {}; var scoreData = {}; scoreData[scoreKey] = []; behaviourData.dynamic_options = scoreData; behaviourData.findForKey = player; updateScoreData.behaviour = JSON.stringify(behaviourData); return updateScoreData;}"
+        "method_name": "updateSlamData",
+        "function": "function updateSlamData(currentFormData) {var yearKey = 'sports_page_select_slam'; var slamKey = 'sports_page_select_player'; var fieldDetails = (JSON.parse(currentFormData))['data'];var slamFieldData = JSON.parse(fieldDetails[slamKey]);var slam = slamFieldData[Object.keys(slamFieldData)[0]] || '';var updateYearData = {};updateYearData.success = true;var behaviourData = {};var yearData = {};yearData[yearKey] = []; behaviourData.dynamic_options = yearData; behaviourData.findForKey = slam; updateYearData.dynamic_behaviour = JSON.stringify(behaviourData); return updateYearData;}"
+      }
+    }
+  },
+  "behaviour": {
+    "sports_page_select_sport": {
+      "enable_player_selection": {
+        "editability": {
+          "sports_page_select_player": true
+        }
       }
     }
   }

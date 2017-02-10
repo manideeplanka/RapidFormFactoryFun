@@ -110,7 +110,6 @@ public class RFSingleSelectSpinner extends Spinner implements
 
     @Override
     public void setSelection(int pos) {
-
         mSelectedPosition = pos;
         mPrevSelectedPosition = pos;
         mSelectedString = mItems[pos];
@@ -147,7 +146,6 @@ public class RFSingleSelectSpinner extends Spinner implements
 
     @Override
     public void onClick(DialogInterface dialog, int which) {
-
         setClickSelection(which);
 
         mSelectedPosition = which;
@@ -158,11 +156,8 @@ public class RFSingleSelectSpinner extends Spinner implements
         mPrevSelectedPosition = mSelectedPosition;
         mSpinnerListener.onDoneClick(mSelectedPosition);
 
-
         dialog.dismiss();
         mBuilder = null;
-
-
     }
 
 }
