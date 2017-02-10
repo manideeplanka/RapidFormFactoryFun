@@ -151,16 +151,21 @@ public final class RFElementEventListenerClass implements RFElementEventListener
 
             if (!methodResponse.isNull(RFValidationConstants.VC_BEHAVIOUR)) {
                 String behaviourKey = methodResponse.get(RFValidationConstants.VC_BEHAVIOUR).toString();
-                mBehaviourApplierObject.applyBehaviour(behaviourKey, element.getModel());
-                if (element.getView() != null && sRFView != null) {
-                    sRFView.refreshCurrentPage();
+                if (!isJson(behaviourKey)) {
+                    mBehaviourApplierObject.applyBehaviour(behaviourKey, element.getModel());
+                    if (element.getView() != null && sRFView != null) {
+                        sRFView.refreshCurrentPage();
+                        Log.d(TAG, "setResponseToModelAndView: page refreshed");
+                    }
                 }
-            } else if (!methodResponse.isNull(RFValidationConstants.VC_DYNAMIC_BEHAVIOUR)) {
+            }
+
+            if (!methodResponse.isNull(RFValidationConstants.VC_DYNAMIC_BEHAVIOUR)) {
                 String behaviourKey = methodResponse.get(RFValidationConstants.VC_DYNAMIC_BEHAVIOUR).toString();
                 String nextFocusKey = null;
                 JSONObject jsonObject = new JSONObject(behaviourKey);
 
-              if (jsonObject.has(RFValidationConstants.VC_DYNAMIC_DATA)) {
+                if (jsonObject.has(RFValidationConstants.VC_DYNAMIC_DATA)) {
                     nextFocusKey = dynamicBehaviourIfData(element, nextFocusKey, jsonObject, RFValidationConstants.VC_DYNAMIC_DATA);
                 } else if (jsonObject.has(RFValidationConstants.VC_DYNAMIC_OPTIONS)) {
                     nextFocusKey = dynamicBehaviourIfData(element, nextFocusKey, jsonObject, RFValidationConstants.VC_DYNAMIC_OPTIONS);
@@ -206,28 +211,28 @@ public final class RFElementEventListenerClass implements RFElementEventListener
                     final RFElementModel rfElementModel = elementsList.get(j);
                     if (rfElementModel.getId().equals(key)) {
                         Log.d(TAG, "dynamicBehaviourIfData: current key:" + key);
-                            if (type.equalsIgnoreCase(RFValidationConstants.VC_DYNAMIC_DATA)) {
-                                String value = "dynamic";
-                                rfElementModel.setValue(value);
-                            } else if (type.equalsIgnoreCase(RFValidationConstants.VC_DYNAMIC_OPTIONS)) {
-                                //get the data from the app
-                                sFormListener.loadDynamicData(key, findForKey, new FoundDynamicDataCallback() {
-                                    @Override
-                                    public void callback(List<String> list) {
-                                        JSONArray jsonArray = null;
-                                        try {
-                                            jsonArray = createJsonArrayFromList(list);
-                                        } catch (JSONException e) {
-                                            Log.e(TAG, "callback: " + e.toString());
-                                        }
-                                        LinkedHashMap<String, String> value = getDataFromJson(jsonArray);
-                                        Log.d(TAG, "callback: elementID:" + rfElementModel.getId());
-                                        rfElementModel.setJsonData(value);
-                                        rfElementModel.setValue(null); //why this?
+                        if (type.equalsIgnoreCase(RFValidationConstants.VC_DYNAMIC_DATA)) {
+                            String value = "dynamic";
+                            rfElementModel.setValue(value);
+                        } else if (type.equalsIgnoreCase(RFValidationConstants.VC_DYNAMIC_OPTIONS)) {
+                            //get the data from the app
+                            sFormListener.loadDynamicData(key, findForKey, new FoundDynamicDataCallback() {
+                                @Override
+                                public void callback(List<String> list) {
+                                    JSONArray jsonArray = null;
+                                    try {
+                                        jsonArray = createJsonArrayFromList(list);
+                                    } catch (JSONException e) {
+                                        Log.e(TAG, "callback: " + e.toString());
                                     }
-                                });
-                            }
-                            nextFocusKey = key;
+                                    LinkedHashMap<String, String> value = getDataFromJson(jsonArray);
+                                    Log.d(TAG, "callback: elementID:" + rfElementModel.getId());
+                                    rfElementModel.setJsonData(value);
+                                    rfElementModel.setValue(null); //why this?
+                                }
+                            });
+                        }
+                        nextFocusKey = key;
                         Log.d(TAG, "dynamicBehaviourIfData: nextFocusKey: " + nextFocusKey);
                     }
                 }

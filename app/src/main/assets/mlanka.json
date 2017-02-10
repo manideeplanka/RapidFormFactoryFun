@@ -1,6 +1,9 @@
 {
   "layout": {},
   "styles": {
+    "sports_page_select_player": {
+      "editability": false
+    }
   },
   "schema": {
     "Sports": [
@@ -55,7 +58,7 @@
       "required": false,
       "on_change": {
         "method_name": "updatePlayerData",
-        "function": "function updatePlayerData(currentFormData) {var yearKey = 'sports_page_select_player'; var slamKey = 'sports_page_select_sport'; var fieldDetails = (JSON.parse(currentFormData))['data'];var slamFieldData = JSON.parse(fieldDetails[slamKey]);var slam = slamFieldData[Object.keys(slamFieldData)[0]] || '';var updateYearData = {};updateYearData.success = true;var behaviourData = {};var yearData = {};yearData[yearKey] = []; behaviourData.dynamic_options = yearData; behaviourData.findForKey = slam; updateYearData.dynamic_behaviour = JSON.stringify(behaviourData); return updateYearData;}"
+        "function": "function updatePlayerData(currentFormData) {var yearKey = 'sports_page_select_player'; var slamKey = 'sports_page_select_sport'; var fieldDetails = (JSON.parse(currentFormData))['data'];var slamFieldData = JSON.parse(fieldDetails[slamKey]);var slam = slamFieldData[Object.keys(slamFieldData)[0]] || '';var updateYearData = {};updateYearData.success = true;var behaviourData = {};var yearData = {};yearData[yearKey] = []; behaviourData.dynamic_options = yearData; behaviourData.findForKey = slam; updateYearData.behaviour = 'enable_player_selection'; updateYearData.dynamic_behaviour = JSON.stringify(behaviourData); return updateYearData;}"
       }
     },
     "sports_page_select_player": {
